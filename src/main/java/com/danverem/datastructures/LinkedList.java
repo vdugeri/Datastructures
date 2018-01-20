@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.danverem.datastructures.helpers;
+package com.danverem.datastructures;
 
 /**
  *
  * @author Verem
  */
-public class Node {
-
+public class LinkedList {
 
 }
