@@ -9,15 +9,14 @@ import java.util.Iterator;
  * @author Verem
  * @param <T>
  */
-public class LinkedList<T> {
+public class LinkedList<T> implements Iterable<T> {
 
     private ListNode head;
     private ListNode tail;
     private int size;
 
     public LinkedList() {
-        this.head = null;
-        this.tail = head;
+        this.head = this.tail = null;
         size = 0;
     }
 
@@ -30,8 +29,8 @@ public class LinkedList<T> {
     public ListNode<T> insertAtTail(T value) {
         ListNode<T> node = new ListNode<>(value);
 
-        if (size == 0) {
-            head = tail = node;
+        if (tail == null) {
+            tail = head = node;
             size += 1;
 
             return tail;
@@ -118,13 +117,18 @@ public class LinkedList<T> {
         return temp;
     }
 
+    public int size() {
+        return size;
+    }
+
+    @Override
     public Iterator iterator() {
         return new Iterator() {
             ListNode<T> current = head;
 
             @Override
             public boolean hasNext() {
-                return current.next != null;
+                return current != null;
             }
 
             @Override
@@ -139,5 +143,21 @@ public class LinkedList<T> {
                 return null;
             }
         };
+    }
+
+    public static void main(String[] args) {
+        LinkedList<Integer> list = new LinkedList<>();
+        list.insertAtHead(4);
+        list.insertAtHead(5);
+        list.insertAtHead(3);
+        list.insertAtTail(22);
+        list.insertAtTail(35);
+        list.insertAtTail(55);
+
+
+
+        for (Integer i : list) {
+            System.out.print(i + "=>");
+        }
     }
 }
