@@ -5,7 +5,6 @@
  */
 package com.danverem.datastructures;
 
-import com.danverem.datastructures.exceptions.EmptyListException;
 import com.danverem.datastructures.helpers.Node;
 import java.util.Iterator;
 
@@ -73,46 +72,61 @@ public class DoublyLinkedList<T> implements Iterable<T> {
     }
 
     /**
-     * Deletes the head of the list and returns the new head.
+     * Deletes the head of the list and returns the removed item.
      *
      * @return
-     * @throws EmptyListException
      */
-    public Node<T> removeHead() throws EmptyListException {
+    public Node<T> removeHead() {
         if (head == null) {
-            throw new EmptyListException("List is empty");
+            return null;
         }
 
         if (head.next != null) {
+            Node<T> temp = head;
             head = head.next;
             head.previous = null;
 
-            return head;
+            return temp;
         }
 
+        Node<T> temp = head;
         head = null;
+        tail = null;
 
-        return head;
+        return temp;
     }
 
     /**
-     * Deletes the current tail and returns the new tail.
+     * Deletes the current tail and returns the removed item.
      *
      * @return
-     * @throws EmptyListException
      */
-    public Node<T> removeTail() throws EmptyListException {
+    public Node<T> removeTail() {
         if (tail == null) {
-            throw new EmptyListException("List is empty");
+            return null;
         }
 
-        tail = tail.previous;
+        if (tail.previous == null) {
+            Node<T> temp = tail;
+            tail = null;
+            head = null;
 
-        return tail;
+            return temp;
+        }
+
+        Node<T> temp = tail;
+        tail = temp.previous;
+        tail.next = null;
+
+        return temp;
     }
 
     public int getSize() {
         return size;
+    }
+
+    public Node<T> getHead() {
+        return this.head;
     }
 
     @Override

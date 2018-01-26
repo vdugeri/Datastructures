@@ -102,7 +102,7 @@ public class LinkedList<T> implements Iterable<T> {
             throw new EmptyListException("List is empty. Cannot remove head");
         }
 
-        if (head == tail) {
+        if (head == tail || head.next == null) {
             ListNode<T> temp = head;
             head = tail = null;
             size -= 1;

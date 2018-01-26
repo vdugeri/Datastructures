@@ -65,7 +65,7 @@ public class DoublyLinkedListTest {
 
         Integer five = 5;
         Integer six = 6;
-        Integer expResult = five;
+        Integer expResult = six;
 
         numbers.insertAtHead(five);
         numbers.insertAtHead(six);
@@ -91,10 +91,25 @@ public class DoublyLinkedListTest {
         numbers.insertAtTail(seven);
         numbers.insertAtTail(eight);
 
-        Integer expResult = 7;
+        Integer expResult = eight;
         Node result = numbers.removeTail();
 
         assertEquals(expResult, result.value);
+    }
+
+    @Test
+    public void testRemoveAll() throws Exception {
+        System.out.println("remove all elements");
+
+        numbers.insertAtHead(8);
+        numbers.insertAtHead(9);
+        numbers.insertAtHead(10);
+
+        for (Integer i : numbers) {
+            System.out.println(numbers.removeTail().value);
+        }
+
+        assertEquals(null, numbers.removeHead());
     }
 
 }

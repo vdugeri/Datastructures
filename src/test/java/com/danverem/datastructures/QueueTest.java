@@ -14,7 +14,7 @@ import org.junit.Test;
  * @author Verem
  */
 public class QueueTest {
-    private Queue<Integer> ages;
+    private final Queue<Integer> ages;
 
     public QueueTest() {
         ages = new Queue<>();

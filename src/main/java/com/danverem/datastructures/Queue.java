@@ -54,8 +54,18 @@ public class Queue<T> implements Iterable<T> {
             throw new EmptyListException("Queue is empty. Cannot remove element");
         }
 
+        if (front.next == null) {
+            Node<T> temp = front;
+            front = null;
+            size -= 1;
+
+            return temp;
+        }
+
         Node<T> temp = front;
         front = front.next;
+
+        size -= 1;
 
         return temp;
     }
